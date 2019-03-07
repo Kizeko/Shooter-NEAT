@@ -11,7 +11,14 @@ public abstract class Animation {
     protected float timeChange;
     protected int index;
 
-    public Animation(Sprite sprite, float timeChange){
+    public Animation(float timeChange) {
+        this.sprite = null;
+        this.currentSprite = null;
+        this.timeChange = timeChange;
+        this.index = 0;
+    }
+
+    public Animation(Sprite sprite, float timeChange) {
         this.sprite = sprite;
         this.currentSprite = this.sprite.getSprite().get(0, 0, this.sprite.getSpriteWidth(), this.sprite.getSpriteHeight());
         this.timeChange = timeChange;

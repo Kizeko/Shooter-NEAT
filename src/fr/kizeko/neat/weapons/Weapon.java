@@ -4,49 +4,35 @@ import fr.kizeko.neat.Main;
 import fr.kizeko.neat.animations.Animation;
 import fr.kizeko.neat.animations.RifleAnimation;
 import fr.kizeko.neat.players.Player;
+import fr.kizeko.neat.utils.World;
 import processing.core.PVector;
 
 public abstract class Weapon {
 
-    protected String name;
+    protected String id;
     protected int damage;
     protected boolean ranged;
-    protected float cooldown;
+    protected int cooldown;
     protected boolean shooting;
-    protected PVector position;
     protected Animation animation;
-    protected long cooldownTimer;
+    protected int timeSaved;
 
-    protected Weapon(String name, int damage, boolean ranged, float cooldown, PVector position, Animation animation) {
-        this.name = name;
+    protected Weapon(String id, int damage, boolean ranged, float cooldown, Animation animation) {
+        this.id = id;
         this.damage = damage;
         this.ranged = ranged;
-        this.cooldown = cooldown;
+        this.cooldown = (int) (cooldown * 1000);
         this.shooting = false;
-        this.position = position;
         this.animation = animation;
-        this.cooldownTimer = System.currentTimeMillis();
+        this.timeSaved = Main.getInstance().millis();
     }
 
-    public void shoot() {
-        //TODO
-    	if(System.currentTimeMillis() - (this.cooldownTimer + this.cooldown) >= 0) {
-    		System.out.println("+++++++++++");
-    		//TODO SHOOT
-    		this.shooting = true;
-    		this.cooldownTimer = System.currentTimeMillis();
-    	}
-    }
-
-    public void updateSpecs(PVector position) {
-        this.position.x = position.x + 5;
-        this.position.y = position.y - 20;
-    }
+    public abstract void performAction(PVector position, PVector destination);
 
     public abstract void draw(Player player);
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return id;
     }
 
     public int getDamage() {
