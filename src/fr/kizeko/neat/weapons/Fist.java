@@ -14,12 +14,19 @@ public class Fist extends Weapon {
     }
 
     @Override
-    public void performAction(PVector position, PVector destination) {
+    public void performAction(PVector zombiePosition, PVector soldierPosition) {
         if (Main.getInstance().millis() - (this.timeSaved + this.cooldown) >= 0) {
             World.getSoldier().substractHealth(this.damage);
+            knockBackTarget(zombiePosition, soldierPosition);
             this.shooting = true;
             this.timeSaved = Main.getInstance().millis();
         }
+    }
+
+    private void knockBackTarget(PVector zombiePosition, PVector soldierPosition) {
+        PVector direction = new PVector(soldierPosition.x - zombiePosition.x, soldierPosition.y - zombiePosition.y);
+        direction.normalize();
+        soldierPosition.add(direction.x * 5.0f, direction.y * 5.0f);
     }
 
     @Override

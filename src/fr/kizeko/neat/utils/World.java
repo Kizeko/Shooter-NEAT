@@ -19,9 +19,11 @@ public class World {
     private Timer timer;
     public static int time;
 
+
     public World() {
         this.backgroundImage = Main.getInstance().loadImage("C:/Users/Kizeko/gitrepos/Shooter-NEAT/src/fr/kizeko/neat/assets/backgrounds" +
                 "/background.png");
+        this.backgroundImage.resize(Main.getInstance().width, Main.getInstance().height);
         players = new ArrayList<>();
         bullets = new ArrayList<>();
         time = 0;
@@ -71,5 +73,9 @@ public class World {
 
     public void addPlayer(Player player) {
         players.add(player);
+    }
+
+    public PImage getBackgroundImage() {
+        return backgroundImage;
     }
 }

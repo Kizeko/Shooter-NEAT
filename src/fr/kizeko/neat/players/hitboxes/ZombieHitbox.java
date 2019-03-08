@@ -1,9 +1,6 @@
 package fr.kizeko.neat.players.hitboxes;
 
 import fr.kizeko.neat.players.Player;
-import fr.kizeko.neat.players.Soldier;
-import fr.kizeko.neat.utils.World;
-import processing.core.PVector;
 
 public class ZombieHitbox extends Hitbox {
 

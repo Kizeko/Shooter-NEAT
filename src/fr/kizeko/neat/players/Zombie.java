@@ -3,6 +3,7 @@ package fr.kizeko.neat.players;
 import fr.kizeko.neat.Main;
 import fr.kizeko.neat.animations.ZombieAnimation;
 import fr.kizeko.neat.players.hitboxes.ZombieHitbox;
+import fr.kizeko.neat.utils.Functions;
 import fr.kizeko.neat.utils.World;
 import fr.kizeko.neat.weapons.Fist;
 import processing.core.PVector;
@@ -51,9 +52,6 @@ public class Zombie extends Player {
     }
 
     private void updateDirection() {
-        PVector direction = new PVector(World.getSoldier().getPosition().x - this.position.x,
-                World.getSoldier().getPosition().y - this.position.y);
-        direction.normalize();
-        this.position.add(direction.x * this.speed, direction.y * this.speed);
+        Functions.moveForward(this.position, World.getSoldier().getPosition(), this.speed);
     }
 }

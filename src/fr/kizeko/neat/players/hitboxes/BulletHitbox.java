@@ -2,6 +2,7 @@ package fr.kizeko.neat.players.hitboxes;
 
 import fr.kizeko.neat.players.Player;
 import fr.kizeko.neat.players.Soldier;
+import fr.kizeko.neat.utils.Functions;
 import fr.kizeko.neat.utils.World;
 
 public class BulletHitbox extends Hitbox {
@@ -14,6 +15,7 @@ public class BulletHitbox extends Hitbox {
     public boolean hasCollided(Player player) {
         Integer index = hasCollidedWith();
         if (index != null && !(World.getPlayers().get(index) instanceof Soldier)) {
+            Functions.moveBackward(World.getPlayers().get(index).getPosition(), player.getPosition(), 10.0f);
             World.getPlayers().get(index).substractHealth(player.getWeapon().getDamage());
             return true;
         }

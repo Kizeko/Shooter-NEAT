@@ -3,6 +3,7 @@ package fr.kizeko.neat.players.hitboxes;
 import fr.kizeko.neat.Main;
 import fr.kizeko.neat.players.Player;
 import fr.kizeko.neat.players.Soldier;
+import fr.kizeko.neat.utils.Functions;
 import fr.kizeko.neat.utils.World;
 import processing.core.PVector;
 
@@ -69,10 +70,7 @@ public abstract class Hitbox {
     protected boolean stopMovementAfterCollidingWithPlayer(Player player) {
         Integer index = this.hasCollidedWith();
         if (index != null) {
-            PVector direction = new PVector(player.getPosition().x - World.getPlayers().get(index).getPosition().x,
-                    player.getPosition().y - World.getPlayers().get(index).getPosition().y);
-            direction.normalize();
-            player.getPosition().add(direction.x * World.getSoldier().getSpeed(), direction.y * World.getSoldier().getSpeed());
+            Functions.moveBackward(player.getPosition(), World.getPlayers().get(index).getPosition(), player.getSpeed());
             if (World.getPlayers().get(index) instanceof Soldier) {
                 player.attack(World.getSoldier().getPosition());
             }

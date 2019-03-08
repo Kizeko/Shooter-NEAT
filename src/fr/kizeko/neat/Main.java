@@ -24,6 +24,7 @@ public class Main extends PApplet {
     public void settings() {
         instance = this;
         size(1280, 720);
+        smooth(3);
     }
 
     public void setup() {
@@ -31,17 +32,13 @@ public class Main extends PApplet {
         frameRate(60);
         this.world = new World();
         this.world.addPlayer(new Soldier("Hey", 600.0f, 100.0f, 2.0f, true));
-        this.world.addPlayer(new Zombie("Boloss", 500.0f, 300.0f, 2.0f, true));
-        this.world.addPlayer(new Zombie("Issou", 350.0f, 200.0f, 2.0f, true));
-        this.world.addPlayer(new Zombie("Pog", 1000.0f, 650.0f, 2.0f, true));
     }
 
 
     public void draw() {
-        this.background(255);
+        this.background(this.world.getBackgroundImage());
         this.move();
         this.world.update();
-        System.out.println(World.getSoldier().getHealth());
     }
 
     public void move() {
