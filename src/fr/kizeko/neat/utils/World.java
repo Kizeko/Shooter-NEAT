@@ -39,8 +39,10 @@ public class World {
     }
 
     private void drawTexts() {
+        Main.getInstance().fill(255);
         Main.getInstance().text("Seconds : " + time, 5, 25);
         Main.getInstance().text("Kills : " + getSoldier().getKillCount(), 5, 50);
+        Main.getInstance().text("Wave : " + GameTask.waveCount, 5, 75);
     }
 
     private void updatePlayers() {

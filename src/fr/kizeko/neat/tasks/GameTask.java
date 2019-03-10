@@ -8,9 +8,9 @@ import java.util.TimerTask;
 
 public class GameTask extends TimerTask {
 
-    private int waveCount = 0;
-    private int zombiesRemainingToSpawn = 0;
-    private boolean running = false;
+    public static int waveCount = 0;
+    public static int zombiesRemainingToSpawn = 0;
+    public static boolean running = false;
 
     @Override
     public void run() {
@@ -24,7 +24,7 @@ public class GameTask extends TimerTask {
                 running = true;
             } else if (running && zombiesRemainingToSpawn != 0) {
                 World.getPlayers().add(new Zombie(String.valueOf(Main.getInstance().random(0, 10000)), Main.getInstance().random(50, 1230),
-                        Main.getInstance().random(50, 870), 2.0f, true));
+                        Main.getInstance().random(50, 870), 2.0f, false));
                 zombiesRemainingToSpawn--;
                 if (zombiesRemainingToSpawn == 0) {
                     running = false;

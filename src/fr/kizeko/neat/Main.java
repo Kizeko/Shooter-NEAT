@@ -1,7 +1,6 @@
 package fr.kizeko.neat;
 
 import fr.kizeko.neat.players.Soldier;
-import fr.kizeko.neat.players.Zombie;
 import fr.kizeko.neat.utils.World;
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -31,7 +30,7 @@ public class Main extends PApplet {
         textSize(22);
         frameRate(60);
         this.world = new World();
-        this.world.addPlayer(new Soldier("Hey", 600.0f, 100.0f, 2.0f, true));
+        this.world.addPlayer(new Soldier("Hey", 600.0f, 100.0f, 2.0f, false));
     }
 
 

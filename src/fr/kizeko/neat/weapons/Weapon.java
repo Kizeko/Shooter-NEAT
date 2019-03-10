@@ -62,4 +62,8 @@ public abstract class Weapon {
     public Animation getAnimation() {
         return animation;
     }
+
+    public int getTimeSaved() {
+        return timeSaved;
+    }
 }

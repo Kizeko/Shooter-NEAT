@@ -4,25 +4,30 @@ import fr.kizeko.neat.Main;
 import fr.kizeko.neat.animations.SoldierAnimation;
 import fr.kizeko.neat.players.hitboxes.SoldierHitbox;
 import fr.kizeko.neat.sprites.SoldierSprite;
+import fr.kizeko.neat.utils.UI;
 import fr.kizeko.neat.weapons.Rifle;
-import processing.core.PVector;
 
 public class Soldier extends Player {
+
+    private UI ui;
 
     private int killCount;
 
     public Soldier(String name, boolean displaying) {
         super(name, new Rifle(), new SoldierAnimation(), new SoldierHitbox(0.0f, 0.0f, displaying));
+        this.ui = new UI(this);
         this.killCount = 0;
     }
 
     public Soldier(String name, float x, float y, float speed, boolean displaying) {
         super(name, new Rifle(), x, y, speed, new SoldierAnimation(), new SoldierHitbox(x, y, displaying));
+        this.ui = new UI(this);
         this.killCount = 0;
     }
 
     public Soldier(String name, float x, float y, float speed, float angle, boolean displaying) {
         super(name, new Rifle(), x, y, speed, angle, new SoldierAnimation(), new SoldierHitbox(x, y, displaying));
+        this.ui = new UI(this);
         this.killCount = 0;
     }
 
@@ -38,6 +43,7 @@ public class Soldier extends Player {
                 -this.animation.getSprite().getSpriteWidth() / 2.0f, -this.animation.getSprite().getSpriteHeight() / 2.0f,
                 this.animation.getSprite().getSpriteWidth(), this.animation.getSprite().getSpriteHeight());
         Main.getInstance().popMatrix();
+        this.ui.update();
     }
 
     @Override
